@@ -9,6 +9,7 @@
 
 typedef int ReturnCode;
 typedef ReturnCode ErrorCode;
+typedef ReturnCode StatusCode;
 
 #define SLASH_SUCCESS	0
 #define SLASH_ERROR		1

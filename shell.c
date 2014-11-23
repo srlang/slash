@@ -1,7 +1,13 @@
 /* 
  * shell.c
  *
- * Copyright (C) 2014 Sean R. Lang
+ * Copyright (c) 2014 Sean R. Lang
+ *
+ *
+ * This file will contain the main logic behind the basic userland shell I am
+ * attempting to make. This is purely an academic exercise, but the opportunity
+ * for expansion--being paramount to a well-engineered software development
+ * project--will still be a decent factor in this project.
  */
 
 #include <stdio.h>
@@ -11,13 +17,15 @@
 #include "return_code.h"
 
 
+/* Set of commands built into the shell. */
 slash_command_t command_table[SLASH_MAX_COMMAND_NUM];
-
-
+/* Index of commands used to keep track of number of commands added */
 unsigned short int num_commands = 0;
+
+
 // commentline
-ReturnCode add_new_shell_command(char * name, char * desc, 
-									ReturnCode (*function)(void * args)) {
+StatusCode add_new_shell_command(char * name, char * desc, 
+									StatusCode (*function)(void * args)) {
 	if (num_commands + 1 < SLASH_MAX_COMMAND_NUM) {
 		command_table[num_commands].name = name;
 		command_table[num_commands].description = desc;
@@ -29,7 +37,11 @@ ReturnCode add_new_shell_command(char * name, char * desc,
 	}
 }
 
-ReturnCode init_shell() {
+/*
+ * Initialize the shell: properties, built-ins, etc.
+ * Returns a StatusCode. 
+ */
+StatusCode init_shell() {
 	return SLASH_SUCCESS;
 }
 
@@ -45,14 +57,14 @@ slash_command_t * extract_slash_command(char * input_str) {
 	return NULL;
 }
 
-ReturnCode slash_execute(slash_command_t * cmd, void * args) {
+StatusCode slash_execute(slash_command_t * cmd, void * args) {
 	if (!cmd) {
 		return SLASH_ERROR;
 	}
 	return cmd->function(args);
 }
 
-ReturnCode shell_main() {
+StatusCode shell_main() {
 	// get input
 	char input_string[SLASH_MAX_INPUT_STRING_LENGTH + 1];
 	char * prompt = slash_prompt();

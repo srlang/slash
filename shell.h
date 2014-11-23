@@ -17,7 +17,7 @@
 typedef struct slash_command {
 	char * name;
 	char * description;
-	ReturnCode (* function) (void *);
+	StatusCode (* function) (void *);
 } slash_command_t;
 
 #endif /*_SHELL_H*/
