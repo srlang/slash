@@ -6,8 +6,15 @@
 
 #include "command.h"
 
-slash_command_t ECHO = {
-	.name = "echo",
-	.description = "print stuff to the console",
-	.function = echo
-};
+
+StatusCode echo(void * args) {
+	return SLASH_SUCCESS;
+}
+
+StatusCode dos(void * args) {
+	return SLASH_SUCCESS;
+}
+
+StatusCode external(void * args) {
+	return SLASH_SUCCESS;
+}
