@@ -38,7 +38,7 @@ char * slash_prompt() {
 }
 
 void * parse_args(char * input_str) {
-
+	return NULL;
 }
 
 char input_string[SLASH_MAX_INPUT_STRING_LENGTH + 1];
@@ -49,4 +49,5 @@ ReturnCode shell_main() {
 	fgets(input_string, SLASH_MAX_INPUT_STRING_LENGTH, stdin);
 
 	void * args = parse_args(input_string);
+	return SLASH_SUCCESS;
 }
