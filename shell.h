@@ -7,6 +7,8 @@
 #ifndef _SHELL_H
 #define _SHELL_H
 
+#include "return_code.h"
+
 #define SLASH_MAX_COMMAND_NUM			20
 #define SLASH_MAX_INPUT_STRING_LENGTH	80
 
