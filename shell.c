@@ -41,13 +41,33 @@ void * parse_args(char * input_str) {
 	return NULL;
 }
 
-char input_string[SLASH_MAX_INPUT_STRING_LENGTH + 1];
+slash_command_t * extract_slash_command(char * input_str) {
+	return NULL;
+}
+
+ReturnCode slash_execute(slash_command_t * cmd, void * args) {
+	if (!cmd) {
+		return SLASH_ERROR;
+	}
+	return cmd->function(args);
+}
+
 ReturnCode shell_main() {
+	// get input
+	char input_string[SLASH_MAX_INPUT_STRING_LENGTH + 1];
 	char * prompt = slash_prompt();
 	printf("%s", prompt);
 	free(prompt);
 	fgets(input_string, SLASH_MAX_INPUT_STRING_LENGTH, stdin);
 
+	// parse into worthwhile info
+	slash_command_t * command = extract_slash_command(input_string);
 	void * args = parse_args(input_string);
+
+	// execute results and return error code
+	return slash_execute(command, args);
+}
+
+int main(int argc, char * argv[]) {
 	return SLASH_SUCCESS;
 }
