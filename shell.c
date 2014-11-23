@@ -20,7 +20,7 @@
 
 
 /* Set of commands built into the shell. */
-//slash_command_t command_table[SLASH_MAX_COMMAND_NUM];
+extern slash_command_t command_table[SLASH_MAX_COMMAND_NUM];
 /* Index of commands used to keep track of number of commands added */
 unsigned short int num_commands = 0;
 

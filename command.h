@@ -17,7 +17,7 @@ typedef struct slash_command {
 	StatusCode (* function) (void * args);
 } slash_command_t;
 
-extern slash_command_t command_table[SLASH_MAX_COMMAND_NUM];
+slash_command_t command_table[SLASH_MAX_COMMAND_NUM];
 
 StatusCode echo(void * args);
 
