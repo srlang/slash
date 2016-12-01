@@ -11,13 +11,13 @@ CFLAGS = --std=c99 -Wall
 all: shell
 
 shell: shell.o command.o
-	${CC} ${CFLAGS} -o shell shell.c
+	${CC} ${CFLAGS} -o $@ $^
 
 shell.o: shell.c shell.h return_code.h debug.h
-	${CC} ${CFLAGS} -c -o shell.o shell.c
+	${CC} ${CFLAGS} -c -o $@ $<
 
-command.o: command.h command.c debug.h
-	${CC} ${CFLAGS} -c -o command.o command.c
+command.o: command.c command.h debug.h
+	${CC} ${CFLAGS} -c -o $@ $<
 
 clean:
 	@rm -v *.o
